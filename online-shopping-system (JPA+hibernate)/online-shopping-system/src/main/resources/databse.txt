@@ -1,0 +1,42 @@
+CREATE TABLE order_pr
+(orderId varchar2(20) CONSTRAINT order_pr_orderId_nn NOT NULL,
+userId varchar2(20) CONSTRAINT order_pr_userId_nn NOT NULL,
+addressId varchar2(20) CONSTRAINT order_pr_addressId_nn NOT NULL,
+orderStatus varchar2(20) CONSTRAINT order_pr_orderStatus_nn NOT NULL,
+orderdate date CONSTRAINT order_pr_orderdate_nn NOT NULL
+productId varchar2(20) CONSTRAINT order_pr_productId_fk REFERENCES product(productId)
+customerid varchar2(20) CONSTRAINT order_pr_customerid_fk REFERENCES customer(customerid));
+
+CREATE TABLE product
+(productId  varchar2(20) CONSTRAINT product_productId_nn NOT NULL,
+productname varchar2(20) CONSTRAINT product_productId_nn NOT NULL,
+price number(7,2),
+color varchar2(20) CONSTRAINT product_productId_nn NOT NULL,
+dimension varchar2(20) CONSTRAINT product_productId_nn NOT NULL,
+specification varchar2(20) CONSTRAINT product_productId_nn NOT NULL,
+manufacturer varchar2(20) CONSTRAINT product_productId_nn NOT NULL,
+quantity number(2),
+cat_Id varchar2(20) CONSTRAINT product_cat_Id_fk REFERENCES category(catId));
+
+CREATE TABLE users
+(userid varchar2(20) CONSTRAINT users_userid_nn NOT NULL,
+password varchar2(20) CONSTRAINT users_password_nn NOT NULL,
+role varchar2(20) CONSTRAINT users_role_nn NOT NULL);
+
+CREATE TABLE cart(
+cartId varchar2(20) CONSTRAINT cart_cartId_nn NOT NULL,
+userId varchar2(20) CONSTRAINT cart_userId_nn NOT NULL,
+productId varchar(20) CONSTRAINT cart_productId_fk REFERENCES product(productId), 
+customerid varchar2(20) CONSTRAINT cart_customerid_fk REFERENCES customer(customerid));
+
+CREATE TABLE category(
+catId varchar2(20) CONSTRAINT category_catId_nn NOT NULL,
+categoryName varchar2(20) category_categoryName_nn NOT NULL);
+
+CREATE TABLE customer(
+customerid varchar2(20) CONSTRAINT customer_customerid_nn NOT NULL,
+firstname varchar2(20) CONSTRAINT customer_firstname_nn NOT NULL,
+lastname varchar2(20) CONSTRAINT customer_lastname_nn NOT NULL,
+mobilenumber varchar2(20) CONSTRAINT customer_mobilenumber_nn NOT NULL,
+email varchar2(20) CONSTRAINT customer_email_nn NOT NULL);
+
